@@ -6,6 +6,7 @@ CUDA Programming: Bidirectional Breadth-first search over graphs with 14,000,000
 CPSC 479 High Performance Computing for Data Science - Spring 2018 - California State University Fullerton
 
 Link to PPT slides: https://drive.google.com/open?id=1yvSYNQWPRfprk_XCQTeYhMUTpJ2aGqMDaw21bC6uxhc
+
 Link to Report: https://drive.google.com/open?id=1Ygq1SgPNy9FugePJaf9gByz6i-srwpntzcKVZjrpf1c
 
 ## Prerequisites and Preprocessing instructions
