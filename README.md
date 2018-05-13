@@ -15,17 +15,15 @@ Link to Report: https://drive.google.com/open?id=1Ygq1SgPNy9FugePJaf9gByz6i-srwp
 http://www.dis.uniroma1.it/challenge9/download.shtml
 4. Preprocess data so that only the first two columns (warning: large datasets with 14,000,000+ nodes and 34,000,000+ arcs) remained
 
-## Commands to start programs
+## Commands to execute bidirectional BFS program
 ```
-Commands to execute bidirectional BFS program
 # nvcc bfsearch.cu
-For example in order to run bidirectional BFS for NYC distance data enter:
 # .a.out NYCdistance.txt
+```
 If you want to process larger graphs such as Full USA and Central USA, you have to preprocess those graphs first.
+
+## Commands to execute binary tree algorithm
 ```
-```
-Commands to execute binary tree algorithm
-Change directory into "binary_tree" folder
 # cd binary_tree
 # make
 # ./main
