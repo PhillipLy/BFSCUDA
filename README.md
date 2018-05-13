@@ -11,7 +11,7 @@ Link to Report: https://drive.google.com/open?id=1Ygq1SgPNy9FugePJaf9gByz6i-srwp
 ## Prerequisites and Preprocessing instructions
 1. A good GPU, in this project we used Nvidia GTX 1080 Ti
 2. Ubuntu 16.04 with CUDA
-3. Download Central USA and NYC distance and travel graphs via link below:
+3. Download Central USA and NYC distance and travel graphs via link:
 http://www.dis.uniroma1.it/challenge9/download.shtml
 4. Preprocess data so that only the first two columns (warning: large datasets with 14,000,000+ nodes and 34,000,000+ arcs) remained
 
