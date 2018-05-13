@@ -8,7 +8,7 @@ CPSC 479 High Performance Computing for Data Science - Spring 2018 - California 
 Link to PPT slides: https://drive.google.com/open?id=1yvSYNQWPRfprk_XCQTeYhMUTpJ2aGqMDaw21bC6uxhc
 Link to Report: https://drive.google.com/open?id=1Ygq1SgPNy9FugePJaf9gByz6i-srwpntzcKVZjrpf1c
 
-## Prerequisites
+## Prerequisites and Preprocessing instructions
 1. A good GPU, in this project we used Nvidia GTX 1080 Ti
 2. Ubuntu 16.04 with CUDA
 3. Download Central USA and NYC distance and travel graphs via link below:
@@ -21,8 +21,8 @@ Commands to execute bidirectional BFS program
 # nvcc bfsearch.cu
 For example in order to run bidirectional BFS for NYC distance data enter:
 # .a.out NYCdistance.txt
+If you want to process larger graphs such as Full USA and Central USA, you have to preprocess those graphs first.
 ```
-
 ```
 Commands to execute binary tree algorithm
 Change directory into "binary_tree" folder
