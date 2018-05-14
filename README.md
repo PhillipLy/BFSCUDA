@@ -1,5 +1,5 @@
 # Breadth First Search and Binary Tree algorithms in CUDA 
-CUDA Programming: Bidirectional breadth-first search (BFS) for graphs with 14,000,000+ nodes and 34,000,000 arcs. Also included basic binary tree algorithm.
+CUDA Programming: Bidirectional breadth-first search (BFS) for graphs with 14,000,000+ nodes and 34,000,000+ arcs. Also included basic binary tree algorithm (construction + traversal).
 
 **Phillip Ly**
 
