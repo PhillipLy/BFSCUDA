@@ -19,7 +19,7 @@ http://www.dis.uniroma1.it/challenge9/download.shtml
 ## Commands to execute bidirectional BFS program
 ```
 # nvcc bfsearch.cu
-# .a.out NYCdistance.txt
+# ./a.out NYCdistance.txt
 ```
 If you want to process larger graphs such as Full USA and Central USA, you have to preprocess those graphs first.
 
