@@ -20,6 +20,7 @@ http://www.dis.uniroma1.it/challenge9/download.shtml
 
 ## Commands to execute bidirectional BFS program
 ```
+# cd project2
 # nvcc bfsearch.cu
 # ./a.out NYCdistance.txt
 ```
@@ -27,6 +28,7 @@ If you want to process larger graphs such as Full USA and Central USA, you have 
 
 ## Commands to execute binary tree algorithm
 ```
+# cd project2
 # cd binary_tree
 # make
 # ./main
