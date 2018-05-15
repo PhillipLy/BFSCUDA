@@ -5,15 +5,19 @@
 #include <cuda.h>
 #define MAX_THREADS_PER_BLOCK 512
 #include "timer.cu"
+
+
 int number_nodes;
 int edge_list;
 FILE *fp;
+
 struct Node
 {
 	int starting;
 	int ending;
 	int no_of_edges;
 };
+
 // Kernel for Bidirectional BFS algorithm
 __global__ void
 Kernel_bfs( Node* graphNodes, int* graphEdges, bool* graphFrontier, bool* updatedFrontier, bool *visited, int* g_cost, int number_nodes)
@@ -253,11 +257,11 @@ void BFSGraph( int argc, char** argv)
 	cudaFree(d_cost);
 
 	if (is_output_timing) {
-        timing            = wtime();
-        traversing_time = timing - traversing_time;
-    }
+            timing = wtime();
+            traversing_time = timing - traversing_time;
+        }
 
-		if (is_output_timing) {
+	if (is_output_timing) {
 			io_timing += wtime() - timing;
 			printf("\nPerforming **** Parallel BFS (CUDA version) ****\n");
 			printf("I/O time           = %10.4f sec\n", io_timing);
