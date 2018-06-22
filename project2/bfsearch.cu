@@ -23,13 +23,13 @@ __global__ void
 Kernel_bfs( Node* graphNodes, int* graphEdges, bool* graphFrontier, bool* updatedFrontier, bool *visited, int* g_cost, int number_nodes)
 {
 	int tid = blockIdx.x*MAX_THREADS_PER_BLOCK + threadIdx.x;
-	if( tid<number_nodes && graphFrontier[tid] )
+	if( tid < number_nodes && graphFrontier[tid] )
 	{
-		graphFrontier[tid]=false;
+		graphFrontier[tid] = false;
 		for( int i = graphNodes[tid].starting; i < (graphNodes[tid].no_of_edges + graphNodes[tid].starting); i++ )
 			{
 				int id = graphEdges[i];
-				if(!visited[id])
+				if( !visited[id] )
 				{
 					g_cost[id] =  g_cost[tid] + 1;
 					updatedFrontier[id] = true;
@@ -83,7 +83,7 @@ void BFSGraph( int argc, char** argv )
 	double timing, io_timing, traversing_time;
 	int is_output_timing=1;
         char *input_f;
-	if( argc!=2 ) {
+	if( argc != 2 ) {
 	Usage(argc, argv);
 	exit(0);
 	}
@@ -134,11 +134,11 @@ void BFSGraph( int argc, char** argv )
 
 	//process the source node by reading it from the file
 	fscanf(fp,"%d",&source);
-	source=0;
+	source = 0;
 
 	//set the source node as true in the frontier
-	track_graphFrontier[source]=true;
-	visited_host[source]=true;
+	track_graphFrontier[source] = true;
+	visited_host[source] = true;
 
 	fscanf(fp,"%d",&edge_list);
 
@@ -191,7 +191,7 @@ void BFSGraph( int argc, char** argv )
 	int* h_cost = (int*) malloc( sizeof(int)*number_nodes);
 	for( int i = 0; i < number_nodes; i++ )
 		h_cost[i] =- 1;
-	h_cost[source]=0;
+	h_cost[source] = 0;
 
 	// device memory allocation for result
 	int* d_cost;
