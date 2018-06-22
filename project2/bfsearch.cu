@@ -23,10 +23,10 @@ __global__ void
 Kernel_bfs( Node* graphNodes, int* graphEdges, bool* graphFrontier, bool* updatedFrontier, bool *visited, int* g_cost, int number_nodes)
 {
 	int tid = blockIdx.x*MAX_THREADS_PER_BLOCK + threadIdx.x;
-	if( tid<number_nodes && graphFrontier[tid])
+	if( tid<number_nodes && graphFrontier[tid] )
 	{
 		graphFrontier[tid]=false;
-		for(int i=graphNodes[tid].starting; i<(graphNodes[tid].no_of_edges + graphNodes[tid].starting); i++)
+		for( int i = graphNodes[tid].starting; i < (graphNodes[tid].no_of_edges + graphNodes[tid].starting); i++ )
 			{
 				int id = graphEdges[i];
 				if(!visited[id])
@@ -35,10 +35,10 @@ Kernel_bfs( Node* graphNodes, int* graphEdges, bool* graphFrontier, bool* update
 					updatedFrontier[id] = true;
 				}
 			}
-		for(int i=graphNodes[tid].ending; i>(graphNodes[tid].no_of_edges + graphNodes[tid].ending); i--)
+		for( int i = graphNodes[tid].ending; i > (graphNodes[tid].no_of_edges + graphNodes[tid].ending); i-- )
 			{
 				int id = graphEdges[i];
-				if(!visited[id])
+				if( !visited[id] )
 				{
 					g_cost[id] =  g_cost[tid] + 1;
 					updatedFrontier[id] = true;
@@ -51,38 +51,39 @@ __global__ void
 Kernel_bfs2( bool* graphFrontier, bool *updatedFrontier, bool* visited, bool *g_over, int number_nodes)
 {
 	int tid = blockIdx.x*MAX_THREADS_PER_BLOCK + threadIdx.x;
-	if( tid<number_nodes && updatedFrontier[tid])
+	if( tid < number_nodes && updatedFrontier[tid] )
 	{
 
-		graphFrontier[tid]=true;
-		visited[tid]=true;
-		*g_over=true;
-		updatedFrontier[tid]=false;
+		graphFrontier[tid] = true;
+		visited[tid] = true;
+		*g_over = true;
+		updatedFrontier[tid] = false;
 	}
 }
 
 void BFSGraph(int argc, char** argv);
 // Main Implementation
-int main( int argc, char** argv)
+int main( int argc, char** argv )
 {
-	number_nodes=0;
-	edge_list=0;
+	number_nodes = 0;
+	edge_list = 0;
 	BFSGraph( argc, argv);
 }
 
-void Usage(int argc, char**argv){
+void Usage(int argc, char**argv)
+{
 
 fprintf(stderr,"Usage: %s <input_file>\n", argv[0]);
 
 }
 // BFS Implementation
-void BFSGraph( int argc, char** argv)
+void BFSGraph( int argc, char** argv )
 {
 
 	double timing, io_timing, traversing_time;
 	int is_output_timing=1;
-  char *input_f;
-	if(argc!=2){
+        char *input_f;
+	if( argc!=2 ) {
 	Usage(argc, argv);
 	exit(0);
 	}
@@ -93,7 +94,7 @@ void BFSGraph( int argc, char** argv)
 	printf("Reading File (In-progress)\n");
 	//Process Graph by reading from a file
 	fp = fopen(input_f,"r");
-	if(!fp)
+	if (!fp)
 	{
 		printf("Error Reading graph file\n");
 		return;
@@ -106,7 +107,7 @@ void BFSGraph( int argc, char** argv)
 	int block = 1;
 	int num_of_threads_per_block = number_nodes;
 
-	if(number_nodes>MAX_THREADS_PER_BLOCK)
+	if( number_nodes>MAX_THREADS_PER_BLOCK )
 	{
 		block = (int)ceil(number_nodes/(double)MAX_THREADS_PER_BLOCK);
 		num_of_threads_per_block = MAX_THREADS_PER_BLOCK;
@@ -143,7 +144,7 @@ void BFSGraph( int argc, char** argv)
 
 	int id,cost;
 	int* graphEdge_host = (int*) malloc(sizeof(int)*edge_list);
-	for(int i=0; i < edge_list ; i++)
+	for( int i = 0; i < edge_list ; i++ )
 	{
 		fscanf(fp,"%d",&id);
 		fscanf(fp,"%d",&cost);
@@ -188,8 +189,8 @@ void BFSGraph( int argc, char** argv)
 
 	// memory allocation for the result on host side
 	int* h_cost = (int*) malloc( sizeof(int)*number_nodes);
-	for(int i=0;i<number_nodes;i++)
-		h_cost[i]=-1;
+	for( int i = 0; i < number_nodes; i++ )
+		h_cost[i] =- 1;
 	h_cost[source]=0;
 
 	// device memory allocation for result
@@ -207,7 +208,7 @@ void BFSGraph( int argc, char** argv)
 	dim3  grid( block, 1, 1);
 	dim3  threads( num_of_threads_per_block, 1, 1);
 
-	int k=0;
+	int k = 0;
 	printf("Begin to traverse the tree\n");
 	bool stop;
 	//Perform kernel calls until all the elements of Frontier are not false
@@ -237,7 +238,7 @@ void BFSGraph( int argc, char** argv)
 
 	//Store processed result and output to a file called result.txt
 	FILE *fpo = fopen("result.txt","w");
-	for(int i=0;i<number_nodes;i++)
+	for( int i = 0; i < number_nodes; i++ )
 		fprintf(fpo,"%d) cost:%d\n",i,h_cost[i]);
 	fclose(fpo);
 	printf("Result stored in result.txt\n");
